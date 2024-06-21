@@ -48,7 +48,7 @@ def get_train_test_data(data):
 
 
 @pytest.fixture
-def get_train_x_y(get_train_test_data):
+def get_train_test(get_train_test_data, encoder, label_binarizer):
     cat_features = [
         "workclass",
         "education",
@@ -59,30 +59,14 @@ def get_train_x_y(get_train_test_data):
         "sex",
         "native-country",
     ]
-
-    X_train, y_train, encoder, lb = process_data(
-        get_train_test_data[0], categorical_features=cat_features, label="salary", training=True
+    X_train, y_train, _, _ = process_data(
+        get_train_test_data[0], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=label_binarizer
     )
-    return X_train, y_train, encoder, lb
 
-
-@pytest.fixture
-def get_test_x_y(get_train_test_data, get_train_x_y):
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
-
-    X_test, y_test, encoder, lb = process_data(
-        get_train_test_data[1], categorical_features=cat_features, label="salary", training=False, encoder=get_train_x_y[2], lb=get_train_x_y[3]
+    X_test, y_test, _, _ = process_data(
+        get_train_test_data[1], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=label_binarizer
     )
-    return X_test, y_test, encoder, lb
+    return X_train, y_train, X_test, y_test
 
 
 def test_data_shape(data):
@@ -93,30 +77,30 @@ def test_data_shape(data):
     assert data.shape == data.dropna().shape
 
 
-def test_train_model(get_train_x_y):
+def test_train_model(get_train_test):
     """
     Test if train_model returns a DecisionTreeClassifier.
     """
-    trained_model = train_model(get_train_x_y[0], get_train_x_y[1])
+    trained_model = train_model(get_train_test[0], get_train_test[1])
     assert isinstance(trained_model, DecisionTreeClassifier)
 
 
-def test_inference(model, get_test_x_y):
+def test_inference(model, get_train_test):
     """
     Test if inference returns numpy.ndarray
     """
 
-    prediction = inference(model, get_test_x_y[0])
+    prediction = inference(model, get_train_test[2])
     assert isinstance(prediction, np.ndarray)
 
 
-def test_compute_model_metrics(model, get_test_x_y):
+def test_compute_model_metrics(model, get_train_test):
     """
-
+    Test if compute_model_metrics returns floats.
     """
-    prediction = inference(model, get_test_x_y[0])
+    prediction = inference(model, get_train_test[2])
     precision, recall, fbeta = compute_model_metrics(
-        get_test_x_y[1], prediction)
+        get_train_test[3], prediction)
     assert isinstance(precision, float)
     assert isinstance(recall, float)
     assert isinstance(fbeta, float)
