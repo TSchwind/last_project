@@ -17,6 +17,14 @@ For additional information see the Model Card paper: https://arxiv.org/pdf/1810.
 - test data split
 
 ## Metrics
+- Prediction were made with following parameters:
+
+    DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
+                       max_depth=None, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_samples_leaf=1,
+                       min_samples_split=2, min_weight_fraction_leaf=0.0,
+                       random_state=42, splitter='best')
+
 - Evaluation metrics include **precision**, **recall** and **fbeta**.
 - **Precision**: The precision is the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives. The precision is intuitively the ability of the classifier not to label as positive a sample that is negative. The best value is 1 and the worst value is 0. (https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html)
 - **Recall**: The recall is the ratio tp / (tp + fn) where tp is the number of true positives and fn the number of false negatives. The recall is intuitively the ability of the classifier to find all the positive samples. The best value is 1 and the worst value is 0. (https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#recall-score)
