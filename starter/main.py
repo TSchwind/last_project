@@ -8,8 +8,14 @@ import pandas as pd
 import pickle
 import logging
 
-from starter.starter.ml.data import process_data  # noqa
-from starter.starter.ml.model import train_model, inference, compute_model_metrics  # noqa
+from pathlib import Path
+import sys
+import os
+cwd = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.join(cwd, 'starter'))
+
+from ml.data import process_data  # type: ignore # noqa
+from ml.model import train_model, inference, compute_model_metrics  # type: ignore # noqa
 
 logger = logging.getLogger('uvicorn.error')
 logger.setLevel(logging.DEBUG)
