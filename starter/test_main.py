@@ -2,7 +2,7 @@ import json
 from urllib import response
 from fastapi.testclient import TestClient
 
-from main import app
+from starter.main import app  # noqa
 
 client = TestClient(app)
 
