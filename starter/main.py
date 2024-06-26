@@ -1,4 +1,5 @@
 # Put the code for your API here.
+
 from fastapi import FastAPI
 from typing import Union
 from pydantic import BaseModel
@@ -7,8 +8,8 @@ import pandas as pd
 import pickle
 import logging
 
-from starter.starter.ml.data import process_data
-from starter.starter.ml.model import train_model, inference, compute_model_metrics
+from starter.starter.ml.data import process_data  # noqa
+from starter.starter.ml.model import train_model, inference, compute_model_metrics  # noqa
 
 logger = logging.getLogger('uvicorn.error')
 logger.setLevel(logging.DEBUG)
