@@ -7,8 +7,8 @@ import pandas as pd
 import pickle
 import logging
 
-from starter.ml.data import process_data
-from starter.ml.model import train_model, inference, compute_model_metrics
+from starter.starter.ml.data import process_data
+from starter.starter.ml.model import train_model, inference, compute_model_metrics
 
 logger = logging.getLogger('uvicorn.error')
 logger.setLevel(logging.DEBUG)
