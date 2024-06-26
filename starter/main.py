@@ -1,14 +1,11 @@
 # Put the code for your API here.
 
 from fastapi import FastAPI
-from typing import Union
 from pydantic import BaseModel
-import numpy as np
 import pandas as pd
 import pickle
 import logging
 
-from pathlib import Path
 import sys
 import os
 cwd = os.path.dirname(os.path.realpath(__file__))

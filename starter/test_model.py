@@ -60,11 +60,13 @@ def get_train_test(get_train_test_data, encoder, label_binarizer):
         "native-country",
     ]
     X_train, y_train, _, _ = process_data(
-        get_train_test_data[0], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=label_binarizer
+        get_train_test_data[0], categorical_features=cat_features, label="salary",
+        training=False, encoder=encoder, lb=label_binarizer
     )
 
     X_test, y_test, _, _ = process_data(
-        get_train_test_data[1], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=label_binarizer
+        get_train_test_data[1], categorical_features=cat_features, label="salary",
+        training=False, encoder=encoder, lb=label_binarizer
     )
     return X_train, y_train, X_test, y_test
 
