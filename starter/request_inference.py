@@ -20,5 +20,5 @@ data = {
 }
 url = "https://last-project.onrender.com/inference/"
 response = requests.post(url=url, data=json.dumps(data))
-print(response.status_code)
-print(response.json())
+print("Status Code: ", response.status_code)
+print("Result: ", response.json()['prediction'])
