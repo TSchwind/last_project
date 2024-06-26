@@ -73,7 +73,9 @@ def compute_model_performance_of_slice(test, cat_features, encoder, lb, slice_ca
         file.write(f"Feature {slice_cat}\n")
         for slice in test[slice_cat].unique():
             X_test, y_test, encoder, lb = process_data(
-                test[test[slice_cat] == slice], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb)
+                test[test[slice_cat] ==
+                     slice], categorical_features=cat_features, label="salary",
+                training=False, encoder=encoder, lb=lb)
             prediction = inference(trained_model, X_test)
             slice_precision, slice_recall, slice_fbeta = compute_model_metrics(
                 y_test, prediction)
@@ -87,7 +89,6 @@ def compute_model_performance_of_slice(test, cat_features, encoder, lb, slice_ca
         file.write("\n")
 
 
-        # print("")
 for slice_cat in cat_features:
     compute_model_performance_of_slice(
         test, cat_features, encoder, lb, slice_cat)

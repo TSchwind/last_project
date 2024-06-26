@@ -36,10 +36,18 @@ class Prediction(BaseModel):
                     "path_model": "model/clf_model.pkl",
                     "encoder_path": "model/encoder.pkl",
                     "label_binarizer_path": "model/label_binarizer.pkl",
-                    "data": [[39, "State-gov", 77516, "Bachelors", 13, "Never-married", "Adm-clerical", "Not-in-family",
-                             "White", "Male", 2174, 0, 40, "United-States"]],
-                    "columns": ["age", "workclass", "fnlgt", "education", "education-num", "marital-status", "occupation",
-                                "relationship", "race", "sex", "capital-gain", "capital-loss", "hours-per-week", "native-country"]
+                    "data": [
+                        [
+                            39, "State-gov", 77516, "Bachelors", 13, "Never-married",
+                            "Adm-clerical", "Not-in-family", "White", "Male", 2174, 0,
+                            40, "United-States"
+                        ]
+                    ],
+                    "columns": [
+                        "age", "workclass", "fnlgt", "education", "education-num",
+                        "marital-status", "occupation", "relationship", "race", "sex",
+                        "capital-gain", "capital-loss", "hours-per-week", "native-country"
+                    ]
                 }
             ]
         }
